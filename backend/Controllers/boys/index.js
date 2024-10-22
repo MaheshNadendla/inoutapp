@@ -30,4 +30,32 @@ const create = async (req,res)=>{
 
 };
 
-module.exports = {create};
+const finduser = async (req,res)=>{
+
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const exists = await totalboys.findOne({roll : roll});
+    if(exists)
+    {
+       return res.status(200).json({msg : "user is found", status : true ,user : exists});
+    }
+
+    res.status(404).json({msg : "User not Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+module.exports = {create,finduser};
