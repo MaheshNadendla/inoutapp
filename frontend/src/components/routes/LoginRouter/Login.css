@@ -1,0 +1,55 @@
+.LoginBox {
+
+    /* height: 400px; */
+    width: 400px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.104);
+    /* filter: blur(2px); */
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.836);
+    border-radius: 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    display: flex;
+    flex-direction: column;
+
+    /* align-items: baseline; */
+
+
+}
+
+input {
+
+    padding-block: 10px;
+    margin-inline: 8px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid;
+    outline: none;
+    font-size: large;
+
+}
+
+label {
+    margin-block: 10px;
+    margin-inline: 10px;
+}
+
+button {
+    padding-block: 12px;
+    margin-block: 50px;
+    margin-inline: 20px;
+    background-color: blue;
+    color: white;
+}
+
+.Login {
+
+    text-align: center;
+    padding-block: 10px;
+    font-size: xx-large;
+    font-weight: 600;
+
+}

@@ -1,0 +1,45 @@
+.MainBody {
+
+    height: 91dvh;
+    background-color: pink;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.ButtonsBox {
+
+    height: 600px;
+    width: 400px;
+    background-color: blue;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+    button {
+        width: 100px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+}
+
+.OutPage{
+
+    height: 400px;
+    width: 400px;
+    background-color: red;
+
+}
+
+.InPage{
+
+    height: 400px;
+    width: 400px;
+    background-color: red;
+
+}
