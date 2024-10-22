@@ -58,4 +58,36 @@ const finduser = async (req,res)=>{
 
 };
 
-module.exports = {create,finduser};
+const updateUser = async (req,res)=>{
+
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const exists = await totalboys.findOne({roll : roll});
+    
+    if(exists)
+    {
+        const newUser = await totalboys.updateOne({ roll: roll }, { $set: req.body });
+        console.log(newUser);
+       return res.status(200).json({msg : "user is found", status : true ,user : newUser});
+    }
+
+    res.status(404).json({msg : "User not Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+
+module.exports = {create,finduser,updateUser};
