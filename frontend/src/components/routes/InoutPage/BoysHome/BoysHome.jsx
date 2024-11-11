@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./BoysHome.css";
+import axios from "axios";
 
 function BoysHome() {
+  const [users, setUsers] = useState([]); 
   const [page, setpage] = useState("out");
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/totalboys/")
+      .then((response) => {
+        setUsers(response.data); 
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+
+
 
   const HandleOut = () => {
     setpage((p) => {
@@ -75,7 +89,7 @@ function BoysHome() {
             </button>
             <div className="ListTable">
 
-                <table>
+                <table className='MainTable' border={1}>
                   <thead className="TableHeading">
                       <tr className="TableHead">
                           <th>Name</th>
@@ -86,35 +100,33 @@ function BoysHome() {
                           <th>intime</th>
                       </tr>
                   </thead>
-                  <tbody>
-                      <tr>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                      </tr>
 
-              
-                      
-                  </tbody>
+          
+
+          <tbody>
+            {users.length > 0 ? (
+              users.map((user,index) => (
+                <tr key={index+1}>
+                  <td>{index + 1}</td>
+                  <td>{user.roll}</td>
+                  <td>{user.name}</td>
+                  <td>{user.phone}</td>
+                  <td>{user.intime}</td>
+                  <td>{user.outtime}</td>
+                  
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">No data available</td>
+              </tr>
+            )}
+          </tbody>
+       
+
+
+
+                  
               </table>
 
             </div>

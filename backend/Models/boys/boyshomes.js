@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const boysModel = mongoose.Schema({
+const boyshomeModel = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -15,7 +15,7 @@ const boysModel = mongoose.Schema({
     },
     intime: {
         type: Date,
-        required: true
+        default: Date.now
     },
     outtime: {
         type: Date,
@@ -24,7 +24,7 @@ const boysModel = mongoose.Schema({
 });
 
 
-const totalboys = mongoose.model("totalboys",boysModel);
-module.exports = totalboys;
+const boyshomes = mongoose.model("boyshomes",boyshomeModel);
+module.exports = boyshomes;
 
 
