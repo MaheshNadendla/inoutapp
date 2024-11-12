@@ -14,6 +14,10 @@ route.put("/boyshomes/:id",findInTotalBoysAndFindInCollegeBoysAndSendBoysHome);
 route.get("/boyshomes/",TotalBoysInHome);
 route.get("/boyshomes/:id",findingABoyInHome);
 route.get("/boysin/:id",findingABoyCollege);
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7ecf809f48ba8ef1e826b2d0d24b5a750b7b2cca
 
 
 
