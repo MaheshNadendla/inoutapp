@@ -202,6 +202,35 @@ const findingABoyInHome = async (req,res)=>{
 };
 
 
+const findingABoyCollege = async (req,res)=>{
+
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const exists = await boysin.findOne({roll : roll});
+    if(exists)
+    {
+       return res.status(200).json({msg : "user is found", status : true ,user : exists});
+    }
+
+    res.status(404).json({msg : "User not Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+
 
 const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
     try {
@@ -239,4 +268,4 @@ const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
     }
 };
 
-module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome};
+module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome,findingABoyCollege};
