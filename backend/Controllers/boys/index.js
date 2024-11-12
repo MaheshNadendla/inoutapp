@@ -5,7 +5,7 @@ const create = async (req,res)=>{
 
     try{
 
-    const {name,roll} = req.body;
+    const {name,roll,intime,outtime,phone} = req.body;
 
     const exists = await totalboys.findOne({roll});
     if(exists)
@@ -13,7 +13,7 @@ const create = async (req,res)=>{
        return res.status(409).json({msg : "user already exists", status : false});
     }
 
-    const newUser = new totalboys({name,roll});
+    const newUser = new totalboys({name,roll,intime,outtime,phone});
     newUser.save();
 
     res.status(201).json({msg : "UserCreated Sucess", status : true});
@@ -144,6 +144,65 @@ const boyshomes = require("../../Models/boys/boyshomes.js");
 const boysin = require("../../Models/boys/boysincolleges.js");
 
 
+const TotalBoysInHome = async (req,res)=>{
+
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const users = await boyshomes.find();
+    if(users)
+    {
+       return res.status(200).json(users);
+    }
+
+    res.status(404).json({msg : "Empty Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+
+const findingABoyInHome = async (req,res)=>{
+
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const exists = await boyshomes.findOne({roll : roll});
+    if(exists)
+    {
+       return res.status(200).json({msg : "user is found", status : true ,user : exists});
+    }
+
+    res.status(404).json({msg : "User not Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+
+
 const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
     try {
         const roll = req.params.id;
@@ -180,4 +239,4 @@ const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
     }
 };
 
-module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome};
+module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome};
