@@ -1,4 +1,5 @@
 import "./App.css";
+import { Toaster } from 'react-hot-toast';
 
 
 // import { Navigate, Route, Routes } from "react-router-dom";
@@ -10,6 +11,7 @@ import Inout from "./components/routes/InoutPage/Inout";
 function App() {
   return (
     <div className="App">
+      <Toaster />
       {/* <Routes>
         <Route path="/" element={< Navigate to="/login" />} />
         <Route path="/signup" element={<Signup />} />

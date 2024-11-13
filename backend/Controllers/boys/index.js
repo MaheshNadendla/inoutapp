@@ -143,6 +143,8 @@ const boyshomes = require("../../Models/boys/boyshomes.js");
 
 const boysin = require("../../Models/boys/boysincolleges.js");
 
+const boysoutings = require("../../Models/boys/boysoutings.js");
+
 
 const TotalBoysInHome = async (req,res)=>{
 
@@ -234,25 +236,42 @@ const findingABoyCollege = async (req,res)=>{
 
 const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
     try {
+
         const roll = req.params.id;
-        console.log(roll);
+        const { place } = req.body;  
+        console.log(`Place: ${place}`);
+
+        if(!place)
+        {
+            return res.status(200).json({ msg: "Place Required", status: 'war' });  //422
+        }
 
         const intotal = await totalboys.findOne({ roll: roll });
         if (!intotal) {
-            return res.status(404).json({ msg: "User not found in totalboys", status: false });
+            return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
+        }
+
+        const inhome = await boyshomes.findOne({ roll: roll });
+        if (inhome) {
+            return res.status(200).json({ msg: "Boy Allready In Home", status: 'war' });  //302
+        }
+
+        const inouting = await boysoutings.findOne({ roll: roll });
+        if (inouting) {
+            return res.status(200).json({ msg: "Boy Gone For Outing : Cant send Home", status: 'war' });  //302
         }
 
         const incollege = await boysin.findOne({ roll: roll });
         if (!incollege) {
-            return res.status(404).json({ msg: "User not found in collegeboys", status: false });
+            return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
         }
         const x = await boysin.findOne({ roll: roll });
        
         if (!x) {
-            return res.status(404).json({ msg: "User not found to delete in collegeboys" });
+            return res.status(200).json({ msg: "Student Id Not Found",status: false });  //404
         }
         else{
-        // Use spread operator to create new object without _id field
+        
         await boysin.findOneAndDelete({ roll: roll });
         const { _id, ...userData } = x.toObject();
         const newoe = new boyshomes(userData);
@@ -260,12 +279,66 @@ const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
         
         }
 
-        return res.status(201).json({ msg: "User created successfully in boyshomes", status: true });
+        return res.status(200).json({ msg: "Sent Boy Home Successfully", status: true }); //201
 
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ msg: "Internal server error", status: false });
+        return res.status(500).json({ msg: "Internal Server Error", status: false });  //500
     }
 };
 
-module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome,findingABoyCollege};
+
+const findInTotalBoysAndFindInBoysHomeAndSendToCollege = async (req, res) => {
+    try {
+
+        const roll = req.params.id;
+        console.log(roll);
+
+        const a1 = await totalboys.findOne({ roll: roll });
+        if (!a1) {
+            return res.status(200).json({ msg: "Student Id Not Found", status: false }); //404
+        }
+
+        const a2 = await boysin.findOne({ roll: roll });
+        if (a2) {
+            return res.status(200).json({ msg: "Boy Allready In College", status: 'war' });  //303
+        }
+
+        const a3 = await boysoutings.findOne({ roll: roll });
+        if (a3) {
+            return res.status(200).json({ msg: "Boy Gone For Outing : Come In Outing Section : In", status: 'war' });  //302
+        }
+
+        const a4 = await boyshomes.findOne({ roll: roll });
+        if (!a4) {
+            return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
+        }
+        const a5 = await boyshomes.findOne({ roll: roll });
+       
+        if (!a5) {
+            return res.status(200).json({ msg: "Student Id Not Found",status: false }); //404
+        }
+        else{
+        
+
+        await boyshomes.findOneAndDelete({ roll: roll });
+        const { _id, ...userData } = a5.toObject();
+        const newoe = new boysin(userData);
+        await newoe.save();
+        
+        }
+
+        return res.status(200).json({ msg: "Sent Boy In College Successfully", status: true });  //201
+
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ msg: "Internal Server Error", status: false }); //500
+    }
+};
+
+
+
+
+
+
+module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome,findingABoyCollege,findInTotalBoysAndFindInBoysHomeAndSendToCollege};
