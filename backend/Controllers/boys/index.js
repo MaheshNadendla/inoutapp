@@ -145,6 +145,8 @@ const boysin = require("../../Models/boys/boysincolleges.js");
 
 const boysoutings = require("../../Models/boys/boysoutings.js");
 
+const boyshomehistorys = require("../../Models/boys/boyshomehistorys.js");
+
 
 const TotalBoysInHome = async (req,res)=>{
 
@@ -274,8 +276,23 @@ const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
         
         await boysin.findOneAndDelete({ roll: roll });
         const { _id, ...userData } = x.toObject();
+        userData.place = place;
+
+        const localeDate = new Date(Date.now()).toLocaleString();
+        const [date, time] = localeDate.split(', '); // Splitting the date and time
+        console.log("Date:", date); // Example: 11/16/2024
+        console.log("Time:", time); 
+        
+        userData.indate= '-';
+        userData.intime = '-';
+        userData.outdate= date;
+        userData.outtime = time;
+
         const newoe = new boyshomes(userData);
         await newoe.save();
+        
+        const newoe2 = new boyshomehistorys(userData);
+        await newoe2.save();
         
         }
 
@@ -283,7 +300,7 @@ const findInTotalBoysAndFindInCollegeBoysAndSendBoysHome = async (req, res) => {
 
     } catch (err) {
         console.error(err);
-        return res.status(500).json({ msg: "Internal Server Error", status: false });  //500
+        return res.status(200).json({ msg: "Internal Server Error", status: false });  //500
     }
 };
 
@@ -319,10 +336,22 @@ const findInTotalBoysAndFindInBoysHomeAndSendToCollege = async (req, res) => {
             return res.status(200).json({ msg: "Student Id Not Found",status: false }); //404
         }
         else{
-        
+
+
+            const localeDate = new Date(Date.now()).toLocaleString();
+            const [date, time] = localeDate.split(', '); // Splitting the date and time
+            console.log("Date:", date); // Example: 11/16/2024
+            console.log("Time:", time);
+
+            await boyshomehistorys.findOneAndUpdate(
+                { roll: roll, indate: '-', intime: '-' }, // Filter
+                { $set: { indate: date , intime: time } }, // Update
+                { new: true, runValidators: true } // Options
+            );
 
         await boyshomes.findOneAndDelete({ roll: roll });
         const { _id, ...userData } = a5.toObject();
+        userData.place='college';
         const newoe = new boysin(userData);
         await newoe.save();
         
@@ -339,6 +368,25 @@ const findInTotalBoysAndFindInBoysHomeAndSendToCollege = async (req, res) => {
 
 
 
+const boysHomeHistory =  async(req,res)=>{
+
+    try {
+
+        const allBoysGoneHome = await boyshomehistorys.find();
+        return res.status(200).json(allBoysGoneHome);  
+        
+        
+    } catch (error) {
+        return res.status(500).json({ msg: "Internal Server Error", status: false }); //500
+    }
+
+}
 
 
-module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome,findingABoyCollege,findInTotalBoysAndFindInBoysHomeAndSendToCollege};
+
+
+
+
+
+
+module.exports = {create,finduser,updateUser,del,getAll,findInTotalBoysAndFindInCollegeBoysAndSendBoysHome,TotalBoysInHome,findingABoyInHome,findingABoyCollege,findInTotalBoysAndFindInBoysHomeAndSendToCollege,boysHomeHistory};

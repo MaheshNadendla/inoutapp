@@ -13,13 +13,25 @@ const boyshomeModel = mongoose.Schema({
         type: String,
         required: true
     },
-    intime: {
-        type: Date,
-        default: Date.now
+    place: {
+        type: String,
+        required: true
+    },
+    outdate: {
+        type: String,
+        required: true
     },
     outtime: {
-        type: Date,
-        default: Date.now
+        type: String,
+        required: true
+    },
+    indate: {
+        type: String,
+        required: true
+    },
+    intime: {
+        type: String,
+        required: true
     }
 });
 

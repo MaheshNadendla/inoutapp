@@ -3,9 +3,12 @@ import "./BoysHome.css";
 import axios from "axios";
 
 import toast from "react-hot-toast";
+import Tablet from "../Tablet";
 
 function BoysHome() {
   const [users, setUsers] = useState([]); 
+  const [boyHomeHist, setboyHomeHist ] = useState([]); 
+  const [boyInHome, setboyInHome ] = useState([]); 
   const [page, setpage] = useState("out");
 
 
@@ -26,7 +29,23 @@ function BoysHome() {
         console.log(response);
       })
       .catch((err) => console.log(err));
-  }, []);
+
+      axios.get("http://localhost:8080/boyshomes/history")
+      .then((response) => {
+        setboyHomeHist(response.data); 
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+
+      axios.get("http://localhost:8080/boyshomes/")
+      .then((response) => {
+        setboyInHome(response.data); 
+        console.log(response);
+      })
+      .catch((err) => console.log(err));
+
+
+  }, [page]);
 
 
 
@@ -217,45 +236,7 @@ function BoysHome() {
             </button>
             <div className="ListTable">
 
-                <table className='MainTable' border={1}>
-                  <thead className="TableHeading">
-                      <tr className="TableHead">
-                          <th>Name</th>
-                          <th>Roll</th>
-                          <th>phone</th>
-                          <th>place</th>
-                          <th>outtime</th>
-                          <th>intime</th>
-                      </tr>
-                  </thead>
-
-          
-
-          <tbody>
-            {users.length > 0 ? (
-              users.map((user,index) => (
-                <tr key={index+1}>
-                  <td>{index + 1}</td>
-                  <td>{user.roll}</td>
-                  <td>{user.name}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.intime}</td>
-                  <td>{user.outtime}</td>
-                  
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="4">No data available</td>
-              </tr>
-            )}
-          </tbody>
-       
-
-
-
-                  
-              </table>
+              <Tablet name={users}/>
 
             </div>
           </div>
@@ -305,47 +286,7 @@ function BoysHome() {
             </button>
             <div className="ListTable">
 
-                <table>
-                  <thead className="TableHeading">
-                      <tr className="TableHead">
-                          <th>Name</th>
-                          <th>Roll</th>
-                          <th>phone</th>
-                          <th>place</th>
-                          <th>outtime</th>
-                          <th>intime</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                      </tr>
-
-              
-                      
-                  </tbody>
-              </table>
+              <Tablet name={boyInHome}/>
 
             </div>
           </div>
@@ -357,47 +298,7 @@ function BoysHome() {
             </button>
             <div className="ListTable">
 
-                <table>
-                  <thead className="TableHeading">
-                      <tr className="TableHead">
-                          <th>Name</th>
-                          <th>Roll</th>
-                          <th>phone</th>
-                          <th>place</th>
-                          <th>outtime</th>
-                          <th>intime</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                      <tr>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                          <td>Row 1, Cell 1</td>
-                          <td>Row 1, Cell 2</td>
-                          <td>Row 1, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                          <td>Row 2, Cell 1</td>
-                          <td>Row 2, Cell 2</td>
-                          <td>Row 2, Cell 3</td>
-                      </tr>
-                      <tr>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                          <td>Row 3, Cell 1</td>
-                          <td>Row 3, Cell 2</td>
-                          <td>Row 3, Cell 3</td>
-                      </tr>
-
-              
-                      
-                  </tbody>
-              </table>
+              <Tablet name={boyHomeHist}/>
 
             </div>
           </div>
