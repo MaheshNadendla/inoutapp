@@ -1,11 +1,12 @@
 import React, { useState,useEffect } from "react";
-import "./BoysHome.css";
+// import "./BoysHome.css";
 import axios from "axios";
 
 import toast from "react-hot-toast";
 import Tablet from "../Tablet";
 
 function BoysHome() {
+
   const [users, setUsers] = useState([]); 
   const [boyHomeHist, setboyHomeHist ] = useState([]); 
   const [boyInHome, setboyInHome ] = useState([]); 

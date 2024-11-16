@@ -2,14 +2,24 @@
 
     height : 9vh;
     width : 100dvw;
-    background-color: red;
+    /* background-color: red; */
+    background: linear-gradient(#141e30, #243b55);
+
+    box-shadow: rgba(0, 0, 0, 0.95) 0 8px 15px;
+ 
+    /* animation: gradient 12s ease infinite; */
+    /* background-size: 400% 400%; */
+    border-bottom-left-radius: 10px ;
+    border-bottom-right-radius: 10px ;
+
+    
 
     display: flex;
     justify-content: space-around;
     align-items: center;
 
     a{
-
+       
         text-decoration: none;
         font-size: larger;
 
@@ -24,4 +34,9 @@
         
 
     }
+}
+
+.Header > *
+{
+    color:#f1f1f1;
 }
