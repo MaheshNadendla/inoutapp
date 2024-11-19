@@ -17,11 +17,11 @@ function BoysOut() {
           CheckBtn = "Check"
           HistoryBtn = "History"
 
-          subListHead = "sub"
-          subOutHead  = "sub"
-          subInHead = "sub"
-          subCheckHead = "sub"
-          subHistoryHead = "sub"
+          subListHead = "Total Boys"
+          subOutHead  = "Boys Outing Out"
+          subInHead = "Boys Outing In"
+          subCheckHead = "Boys at Outing"
+          subHistoryHead = "Boys Outing History"
           
           totalListLink = "http://localhost:8080/totalboys/"
           outSendingLink = "http://localhost:8080/boyshomes/" 

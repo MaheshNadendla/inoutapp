@@ -306,10 +306,11 @@ function AllRouts({
           )}
   
           {page === "list" && (
-            <div className="">
-              <p>{subListHead}</p>
-              <button onClick={BackBtn} className="InBackBtn">
-                X
+            <div className="TheBoxs">
+              <p className="BoxSubHead" >{subListHead}</p>
+              <button onClick={BackBtn} className="BacksBtn">
+              <div className="line1"></div>
+              <div className="line2"></div>
               </button>
               <div className="ListTable">
   
@@ -322,8 +323,8 @@ function AllRouts({
           
   
           {page === "out" && (
-            <>
-            <p>{subOutHead}</p>
+            <div className="TheBoxs">
+            <p className="BoxSubHead" >{subOutHead}</p>
             <div className="OutPage">
               <button onClick={BackBtn} className="OutBackBtn">
                 <div className="line1"></div>
@@ -337,12 +338,12 @@ function AllRouts({
   
               <button className="SubmitBtn" type="submit" onClick={sendCollegeToHome} >send out</button>
             </div>
-            </>
+            </div>
           )}
   
           {page === "in" && (
-            <>
-            <p>{subInHead}</p>
+            <div className="TheBoxs">
+            <p className="BoxSubHead" >{subInHead}</p>
             <div className="InPage">
               <button onClick={BackBtn} className="InBackBtn">
               <div className="line1"></div>
@@ -359,14 +360,15 @@ function AllRouts({
                   send in
                 </button>
             </div>
-            </>
+            </div>
           )}
   
           {page === "check" && (
-            <div className="">
-              <p>{subCheckHead}</p>
-              <button onClick={BackBtn} className="InBackBtn">
-                X
+            <div className="TheBoxs">
+              <p className="BoxSubHead" >{subCheckHead}</p>
+              <button onClick={BackBtn} className="BacksBtn">
+              <div className="line1"></div>
+              <div className="line2"></div>
               </button>
               <div className="ListTable">
   
@@ -376,10 +378,11 @@ function AllRouts({
             </div>
           )}
           {page === "history" && (
-            <div className="">
-              <p>{subHistoryHead}</p>
-              <button onClick={BackBtn} className="InBackBtn">
-                X
+            <div className="TheBoxs">
+              <p className="BoxSubHead" >{subHistoryHead}</p>
+              <button onClick={BackBtn} className="BacksBtn">
+              <div className="line1"></div>
+              <div className="line2"></div>
               </button>
               <div className="ListTable">
   
