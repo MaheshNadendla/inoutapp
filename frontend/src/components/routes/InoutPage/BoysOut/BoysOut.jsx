@@ -9,7 +9,7 @@ function BoysOut() {
     <div>
       <AllRouts
 
-          pageHeading = "Boys Home"
+          pageHeading = "Boys Outing"
 
           ListBtn = "List"
           OutBtn = "Out"
@@ -23,11 +23,11 @@ function BoysOut() {
           subCheckHead = "Boys at Outing"
           subHistoryHead = "Boys Outing History"
           
-          totalListLink = "http://localhost:8080/totalboys/"
-          outSendingLink = "http://localhost:8080/boyshomes/" 
-          inSendingLink = "http://localhost:8080/boysin/" 
-          checkListLink = "http://localhost:8080/boyshomes/"
-          historyListLink = "http://localhost:8080/boyshomes/history"
+          totalListLink = "http://localhost:8080/boysouting/all/"
+          outSendingLink = "http://localhost:8080/boysouting/out/" 
+          inSendingLink = "http://localhost:8080/boysouting/in/" 
+          checkListLink = "http://localhost:8080/boysouting/check/"
+          historyListLink = "http://localhost:8080/boysouting/history/"
       
       />
     </div>
