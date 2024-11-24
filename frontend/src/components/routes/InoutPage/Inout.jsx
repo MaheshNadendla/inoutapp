@@ -5,6 +5,8 @@ import "./header.css";
 import BoysOut from "./BoysOut/BoysOut";
 import BoysHome from "./BoysHome/BoysHome";
 import GirlsHome from "./GirlsHome/GirlsHome";
+import GirlsOut from "./GirlsOut/GirlsOut";
+import StaffHome from "./StaffHome/StaffHome";
 
 function Inout() {
   const [page, setpage] = useState("boyshome");
@@ -27,6 +29,18 @@ function Inout() {
     });
   };
 
+  const handleGirlsOut = () => {
+    setpage((p) => {
+      return "girlsout";
+    });
+  };
+
+  const handleStaffHome = () => {
+    setpage((p) => {
+      return "staffhome";
+    });
+  };
+
   console.log(page);
 
   return (
@@ -35,14 +49,17 @@ function Inout() {
         <button onClick={handleBoysHome} href="">BoysHome</button>
         <button onClick={handleBoysOut} href="">BoysOut</button>
         <button onClick={handleGirlsHome} href="">GirlsHome</button>
-        <button href="">GirlsOut</button>
-        <button href="">StaffHome</button>
+        <button onClick={handleGirlsOut} href="">GirlsOut</button>
+        <button onClick={handleStaffHome} href="">StaffHome</button>
         <button href="">Visiters</button>
       </div>
 
       {page === "boyshome" && <BoysHome />}
       {page === "boysout" && <BoysOut />}
       {page === "girlshome" && <GirlsHome/>}
+      {page === "girlsout" && <GirlsOut/>}
+      {page === "staffhome" && <StaffHome/>}
+      
     </div>
   );
 }
