@@ -7,6 +7,7 @@ import BoysHome from "./BoysHome/BoysHome";
 import GirlsHome from "./GirlsHome/GirlsHome";
 import GirlsOut from "./GirlsOut/GirlsOut";
 import StaffHome from "./StaffHome/StaffHome";
+import VisitersOut from "./VisitersOut/VisitersOut";
 
 function Inout() {
   const [page, setpage] = useState("boyshome");
@@ -41,6 +42,12 @@ function Inout() {
     });
   };
 
+  const handleVisitersOut = () => {
+    setpage((p) => {
+      return "visitersout";
+    });
+  };
+
   console.log(page);
 
   return (
@@ -51,7 +58,7 @@ function Inout() {
         <button onClick={handleGirlsHome} href="">GirlsHome</button>
         <button onClick={handleGirlsOut} href="">GirlsOut</button>
         <button onClick={handleStaffHome} href="">StaffHome</button>
-        <button href="">Visiters</button>
+        <button onClick={handleVisitersOut} href="">Visiters</button>
       </div>
 
       {page === "boyshome" && <BoysHome />}
@@ -59,6 +66,7 @@ function Inout() {
       {page === "girlshome" && <GirlsHome/>}
       {page === "girlsout" && <GirlsOut/>}
       {page === "staffhome" && <StaffHome/>}
+      {page === "visitersout" && <VisitersOut/>}
       
     </div>
   );
