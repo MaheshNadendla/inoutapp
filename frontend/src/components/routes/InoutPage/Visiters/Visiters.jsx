@@ -1,7 +1,6 @@
 
 import React, { useState,useEffect } from "react";
 import '../Allinout/AllRouts.css';
-import './Visiters.css';
 import axios from "axios";
 import toast from "react-hot-toast";
 import Tablet from "../Tablet";
@@ -356,8 +355,8 @@ function AllRouts({
                   onChange={(e) => setRollTypeIn(e.target.value)}
                 />
 
-                <label className="OutLabel2" htmlFor="">Outing Place Name</label>
-                <input className="OutInputBox"  type="text"  value={rollTypeOutPlace}  onChange={(e) => setRollTypeOutPlace(e.target.value)} />
+                <label className="InLabel2" htmlFor="">Outing Place Name</label>
+                <input className="InInputBox"  type="text"  value={rollTypeOutPlace}  onChange={(e) => setRollTypeOutPlace(e.target.value)} />
 
                 <button onClick={sendHomeToCollege} className="SubmitBtn" type="submit">
                   send in
