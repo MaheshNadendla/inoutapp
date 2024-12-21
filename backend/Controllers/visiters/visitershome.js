@@ -1,10 +1,12 @@
+const totalboys = require("../../Models/boys/totalboys.js");
+
+const totalgirls = require("../../Models/girls/totalgirls.js");
 
 const totalvisiters = require("../../Models/visiters/totalvisiters.js");
 
 const visitershomes = require("../../Models/visiters/visitershomes.js");
 
 const visitersin = require("../../Models/visiters/visitersincolleges.js");
-
 
 const visitershomehistorys = require("../../Models/visiters/visitershomehistorys.js");
 
@@ -67,6 +69,37 @@ const getAllVisitersFromHome = async (req,res)=>{
 // };
 
 
+const getAllVisitersinCollege = async (req,res)=>{
+ 
+    try{
+
+    const roll = req.params.id;
+
+    console.log(roll); 
+
+    const users = await totalvisiters.find();
+    if(users)
+    {
+       return res.status(200).json(users);
+    }
+
+    res.status(404).json({msg : "Empty Found", status : false});
+
+
+    }
+    catch(err){
+
+        res.status(500).json({msg : "Internal Server error", status : false});
+
+
+    }
+
+
+};
+
+
+
+
 
 const findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome = async (req, res) => {
     try {
@@ -80,8 +113,16 @@ const findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome = async (re
             return res.status(200).json({ msg: "Place Required", status: 'war' });  //422
         }
 
-        const intotal = await totalvisiters.findOne({ roll: roll });
-        if (!intotal) {
+        const intotals = await totalboys.findOne({ roll: roll });
+
+        // if(!intotal)
+        // {
+        //     intotal = await totalgirls.findOne({ roll: roll });
+        // }
+
+        if (!intotals) {
+
+            // console.log(intotals);
             return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
         }
 
@@ -91,33 +132,34 @@ const findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome = async (re
         // }
 
 
-        const incollege = await visitersin.findOne({ roll: roll });
-        if (!incollege) {
-            return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
-        }
-        const x = await visitersin.findOne({ roll: roll });
+        // const incollege = await visitersin.findOne({ roll: roll });
+        // if (!incollege) {
+        //     return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
+        // }
+        // const x = await visitersin.findOne({ roll: roll });
        
-        if (!x) {
-            return res.status(200).json({ msg: "Student Id Not Found",status: false });  //404
-        }
+        // if (!x) {
+        //     return res.status(200).json({ msg: "Student Id Not Found",status: false });  //404
+        // }
         else{
         
-        await visitersin.findOneAndDelete({ roll: roll });
-        const { _id, ...userData } = x.toObject();
-        userData.place = place;
+        // await visitersin.findOneAndDelete({ roll: roll });
+
+        const { _id, ...userData } = intotals.toObject();
+        userData.name = place;
 
         const localeDate = new Date(Date.now()).toLocaleString();
         const [date, time] = localeDate.split(', '); // Splitting the date and time
         console.log("Date:", date); // Example: 11/16/2024
         console.log("Time:", time); 
         
-        userData.indate= '-';
-        userData.intime = '-';
-        userData.outdate= date;
-        userData.outtime = time;
+        userData.indate= date;
+        userData.intime = time;
+        userData.outdate= '-';
+        userData.outtime = '-';
 
-        // const newoe = new visitershomes(userData);
-        // await newoe.save();
+        const newoe = new visitershomes(userData);
+        await newoe.save();
         
         const newoe2 = new visitershomehistorys(userData);
         await newoe2.save();
@@ -151,11 +193,11 @@ const findInTotalVisitersAndFindInVisitersHomeAndSendToCollege = async (req, res
         }
 
 
-        const a4 = await visitershomes.findOne({ roll: roll });
+        // const a4 = await visitershomes.findOne({ roll: roll });
         if (!a4) {
             return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
         }
-        const a5 = await visitershomes.findOne({ roll: roll });
+        // const a5 = await visitershomes.findOne({ roll: roll });
        
         if (!a5) {
             return res.status(200).json({ msg: "Student Id Not Found",status: false }); //404
@@ -174,7 +216,7 @@ const findInTotalVisitersAndFindInVisitersHomeAndSendToCollege = async (req, res
                 { new: true, runValidators: true } // Options
             );
 
-        await visitershomes.findOneAndDelete({ roll: roll });
+        // await visitershomes.findOneAndDelete({ roll: roll });
         const { _id, ...userData } = a5.toObject();
         userData.place='college';
         const newoe = new visitersin(userData);
@@ -207,4 +249,4 @@ const visitersHomeHistory =  async(req,res)=>{
 
 }
 
-module.exports = {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,TotalVisitersInHome,visitersHomeHistory};
+module.exports = {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory};

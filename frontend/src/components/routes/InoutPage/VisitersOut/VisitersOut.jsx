@@ -23,11 +23,11 @@ function VisitersOut() {
           subCheckHead = "Visiters at Outing"
           subHistoryHead = "Visiters Outing History"
           
-          totalListLink = "http://localhost:8080/visitersouting/all/"
-          outSendingLink = "http://localhost:8080/visitersouting/out/" 
-          inSendingLink = "http://localhost:8080/visitersouting/in/" 
-          checkListLink = "http://localhost:8080/visitersouting/check/"
-          historyListLink = "http://localhost:8080/visitersouting/history/"
+          totalListLink = "http://localhost:8080/visitershome/all/"
+          outSendingLink = "http://localhost:8080/visitershome/out/" 
+          inSendingLink = "http://localhost:8080/visitershome/in/" 
+          checkListLink = "http://localhost:8080/visitershome/check/"
+          historyListLink = "http://localhost:8080/visitershome/history/"
       
       />
     </div>

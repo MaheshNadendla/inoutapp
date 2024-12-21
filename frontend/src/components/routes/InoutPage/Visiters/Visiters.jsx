@@ -185,7 +185,7 @@ function AllRouts({
     const sendHomeToCollege = ()=>
     {
       axios
-        .put(`${inSendingLink}${rollTypeIn}`,rollTypeIn)
+        .put(`${inSendingLink}${rollTypeIn}`,{ place: rollTypeOutPlace })
         .then((response) => {
   
           const status = response.data.status;
@@ -231,7 +231,7 @@ function AllRouts({
   
     const sendCollegeToHome = () => {
       axios
-        .put(`${outSendingLink}${rollTypeOut}`, { place: rollTypeOutPlace })
+        .put(`${outSendingLink}${rollTypeOut}`)
         .then((response) => {
   
   
@@ -355,7 +355,7 @@ function AllRouts({
                   onChange={(e) => setRollTypeIn(e.target.value)}
                 />
 
-                <label className="InLabel2" htmlFor="">Outing Place Name</label>
+                <label className="InLabel2" htmlFor="">Visitor Name</label>
                 <input className="InInputBox"  type="text"  value={rollTypeOutPlace}  onChange={(e) => setRollTypeOutPlace(e.target.value)} />
 
                 <button onClick={sendHomeToCollege} className="SubmitBtn" type="submit">

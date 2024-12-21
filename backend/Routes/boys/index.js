@@ -75,5 +75,17 @@ route.get("/staffshome/check/",TotalStaffsInHome);
 route.get("/staffshome/history/",staffsHomeHistory);
 
 
+//visiters home
+
+const {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory} = require("../../Controllers/visiters/visitershome.js");
+route.get("/visitershome/all/",getAllVisitersFromHome);
+route.put("/visitershome/in/:id",findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome);
+route.put("/visitershome/out/:id",findInTotalVisitersAndFindInVisitersHomeAndSendToCollege);
+route.get("/visitershome/check/",getAllVisitersinCollege);
+route.get("/visitershome/history/",visitersHomeHistory);
+
+
+
+
 
 module.exports = route;
