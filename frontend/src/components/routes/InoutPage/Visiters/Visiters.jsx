@@ -231,7 +231,7 @@ function AllRouts({
   
     const sendCollegeToHome = () => {
       axios
-        .put(`${outSendingLink}${rollTypeOut}`)
+        .get(`${outSendingLink}${rollTypeOut}`)
         .then((response) => {
   
   

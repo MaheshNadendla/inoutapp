@@ -80,7 +80,7 @@ route.get("/staffshome/history/",staffsHomeHistory);
 const {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory} = require("../../Controllers/visiters/visitershome.js");
 route.get("/visitershome/all/",getAllVisitersFromHome);
 route.put("/visitershome/in/:id",findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome);
-route.put("/visitershome/out/:id",findInTotalVisitersAndFindInVisitersHomeAndSendToCollege);
+route.get("/visitershome/out/:id",findInTotalVisitersAndFindInVisitersHomeAndSendToCollege);
 route.get("/visitershome/check/",getAllVisitersinCollege);
 route.get("/visitershome/history/",visitersHomeHistory);
 

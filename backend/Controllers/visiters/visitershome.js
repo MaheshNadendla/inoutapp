@@ -182,45 +182,47 @@ const findInTotalVisitersAndFindInVisitersHomeAndSendToCollege = async (req, res
         const roll = req.params.id;
         console.log(roll);
 
-        const a1 = await totalvisiters.findOne({ roll: roll });
+        const a1 = await visitershomes.find({ roll: roll });
         if (!a1) {
-            return res.status(200).json({ msg: "Student Id Not Found", status: false }); //404
+            return res.status(200).json({ msg: "Visitors Not Found", status: false }); //404
         }
 
-        const a2 = await visitersin.findOne({ roll: roll });
-        if (a2) {
-            return res.status(200).json({ msg: "Staff Allready In College", status: 'war' });  //303
-        }
+        // const a2 = await visitersin.findOne({ roll: roll });
+        // if (a2) {
+        //     return res.status(200).json({ msg: "Staff Allready In College", status: 'war' });  //303
+        // }
 
 
-        // const a4 = await visitershomes.findOne({ roll: roll });
-        if (!a4) {
-            return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
-        }
-        // const a5 = await visitershomes.findOne({ roll: roll });
+        // // const a4 = await visitershomes.findOne({ roll: roll });
+        // if (!a4) {
+        //     return res.status(200).json({ msg: "Student Id Not Found", status: false });  //404
+        // }
+        // // const a5 = await visitershomes.findOne({ roll: roll });
        
-        if (!a5) {
-            return res.status(200).json({ msg: "Student Id Not Found",status: false }); //404
-        }
+        // if (!a5) {
+        //     return res.status(200).json({ msg: "Student Id Not Found",status: false }); //404
+        // }
         else{
 
 
-            const localeDate = new Date(Date.now()).toLocaleString();
-            const [date, time] = localeDate.split(', '); // Splitting the date and time
-            console.log("Date:", date); // Example: 11/16/2024
-            console.log("Time:", time);
+        //     const localeDate = new Date(Date.now()).toLocaleString();
+        //     const [date, time] = localeDate.split(', '); // Splitting the date and time
+        //     console.log("Date:", date); // Example: 11/16/2024
+        //     console.log("Time:", time);
 
-            await visitershomehistorys.findOneAndUpdate(
-                { roll: roll, indate: '-', intime: '-' }, // Filter
-                { $set: { indate: date , intime: time } }, // Update
-                { new: true, runValidators: true } // Options
-            );
+        //     await visitershomehistorys.findOneAndUpdate(
+        //         { roll: roll, indate: '-', intime: '-' }, // Filter
+        //         { $set: { indate: date , intime: time } }, // Update
+        //         { new: true, runValidators: true } // Options
+        //     );
 
-        // await visitershomes.findOneAndDelete({ roll: roll });
-        const { _id, ...userData } = a5.toObject();
-        userData.place='college';
-        const newoe = new visitersin(userData);
-        await newoe.save();
+        // // await visitershomes.findOneAndDelete({ roll: roll });
+        // const { _id, ...userData } = a5.toObject();
+        // userData.place='college';
+        // const newoe = new visitersin(userData);
+        // await newoe.save();
+
+        return res.status(200).json({ msg: "Sent Staff In College Successfully", status: true ,data : a1 });
         
         }
 
