@@ -77,12 +77,14 @@ route.get("/staffshome/history/",staffsHomeHistory);
 
 //visiters home
 
-const {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory} = require("../../Controllers/visiters/visitershome.js");
+const {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory,deleteVisitor} = require("../../Controllers/visiters/visitershome.js");
 route.get("/visitershome/all/",getAllVisitersFromHome);
 route.put("/visitershome/in/:id",findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome);
 route.get("/visitershome/out/:id",findInTotalVisitersAndFindInVisitersHomeAndSendToCollege);
 route.get("/visitershome/check/",getAllVisitersinCollege);
 route.get("/visitershome/history/",visitersHomeHistory);
+
+route.delete("/visitershome/del/:id",deleteVisitor)
 
 
 

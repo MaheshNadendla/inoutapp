@@ -145,6 +145,12 @@ const findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome = async (re
         
         // await visitersin.findOneAndDelete({ roll: roll });
 
+
+        const inhomethere = await visitershomes.findOne({ name : place });
+
+        if(inhomethere)
+            return res.status(200).json({ msg: "Name Already There", status: 'war' });  //422
+
         const { _id, ...userData } = intotals.toObject();
         userData.name = place;
 
@@ -222,11 +228,10 @@ const findInTotalVisitersAndFindInVisitersHomeAndSendToCollege = async (req, res
         // const newoe = new visitersin(userData);
         // await newoe.save();
 
-        return res.status(200).json({ msg: "Sent Staff In College Successfully", status: true ,data : a1 });
+        return res.status(200).json(a1);
         
         }
 
-        return res.status(200).json({ msg: "Sent Staff In College Successfully", status: true });  //201
 
     } catch (err) {
         console.error(err);
@@ -251,4 +256,44 @@ const visitersHomeHistory =  async(req,res)=>{
 
 }
 
-module.exports = {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory};
+
+
+const deleteVisitor = async(req,res)=>{
+
+
+    try{
+
+
+        const localeDate = new Date(Date.now()).toLocaleString();
+        const [date, time] = localeDate.split(', '); // Splitting the date and time
+        console.log("Date:", date); // Example: 11/16/2024
+        console.log("Time:", time); 
+
+        const roll = req.params.id;
+
+        const visFound = await visitershomes.findByIdAndDelete(roll);
+
+        if(visFound)
+        {
+
+            await visitershomehistorys.findOneAndUpdate(
+                { name : visFound.name}, // Filter
+                { $set: { outdate: date , outtime: time } }, // Update
+                { new: true, runValidators: true } // Options
+            );
+        
+
+            return res.status(200).json({ msg: "Visiter Send Out Successfully", status: true });  //201
+
+        }
+        return res.status(200).json({ msg: "Usewr Not Found", status: 'war' });  //404
+
+    } catch (error)
+    {
+        return res.status(500).json({ msg: "Internal Server Error", status: false }); //500
+    }
+
+}
+
+
+module.exports = {getAllVisitersFromHome,findInTotalVisitersAndFindInCollegeVisitersAndSendVisitersHome,findInTotalVisitersAndFindInVisitersHomeAndSendToCollege,getAllVisitersinCollege,visitersHomeHistory,deleteVisitor};

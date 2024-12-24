@@ -5,6 +5,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import Tablet from "../Tablet";
 
+import TabletVis from "../TabletVis";
+
 function AllRouts({ 
 
             pageHeading : pageHeading,
@@ -94,12 +96,17 @@ function AllRouts({
     const [historyList, setHistoryList ] = useState([]); 
     // const historyListLink  = "http://localhost:8080/boyshomes/history" ;
 
+    // visiter del 
+    const [delVis , setDelVis] = useState([]); 
+
   
-    console.log(rollTypeIn);
+    // console.log(rollTypeIn);
     console.log(rollTypeOut);
-    console.log(rollTypeOutPlace);
+
+    console.log(delVis);
   
     useEffect(() => {
+
       axios.get(totalListLink)
         .then((response) => {
           setTotalList(response.data); 
@@ -118,6 +125,15 @@ function AllRouts({
         axios.get(historyListLink)
         .then((response) => {
           setHistoryList(response.data); 
+          console.log(response);
+        })
+        .catch((err) => console.log(err));
+
+
+
+        axios.get(`${outSendingLink}${rollTypeOut}`)
+        .then((response) => {
+          setDelVis(response.data); 
           console.log(response);
         })
         .catch((err) => console.log(err));
@@ -164,6 +180,12 @@ function AllRouts({
     const BackBtn = () => {
       setpage((p) => {
         return "buttons";
+      });
+    };
+
+    const DelVis = () => {
+      setpage((p) => {
+        return "delvistors";
       });
     };
   
@@ -230,13 +252,24 @@ function AllRouts({
     }
   
     const sendCollegeToHome = () => {
+
+
+
       axios
         .get(`${outSendingLink}${rollTypeOut}`)
         .then((response) => {
   
   
-          const status = response.data.status;
-          const msg = response.data.msg;
+          let msg = "vister are there";
+          let status = true;
+
+          if(response.data.length===0)
+          {
+            msg = "vister are Not there";
+            status='war';
+          }
+
+
   
           if(status=='war')
           {
@@ -275,6 +308,10 @@ function AllRouts({
           });
           console.error("Error:", err);
         });
+
+
+        DelVis();
+
     };
     
   
@@ -393,6 +430,22 @@ function AllRouts({
               </div>
             </div>
           )}
+
+          {page === "delvistors" && (
+            <div className="TheBoxs">
+              <p className="BoxSubHead" >Visters table</p>
+              <button onClick={BackBtn} className="BacksBtn">
+              <div className="line1"></div>
+              <div className="line2"></div>
+              </button>
+              <div className="ListTable">
+  
+                <TabletVis name={delVis}/>
+  
+              </div>
+            </div>
+          )}
+
         </div>
       </div>
     );
