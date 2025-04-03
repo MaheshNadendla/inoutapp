@@ -1,0 +1,168 @@
+.InoutNav {
+
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-inline: 15px;
+  margin-block: 10px;
+
+
+
+
+  .r {
+    background-color: red;
+    height: 5px;
+    width: 35px;
+    margin-top: 5px;
+    position: relative;
+    right: 16px;
+    bottom: 4px;
+  }
+
+  .r1 {
+    transition: transform 0.5s ease;
+    border: none;
+  }
+
+  .r11 {
+    transform: rotate(-45deg);
+    position: relative;
+    top: 1px;
+  }
+
+  .r22 {
+    display: none;
+  }
+
+  .r3 {
+    transition: transform 0.5s ease;
+  }
+
+  .r33 {
+    transform: rotate(45deg);
+    position: relative;
+    top: -9px;
+  }
+
+  .ThreeLinesThese {
+    background-color: white;
+    width: 50px;
+    height: 50px;
+    padding-left: 24px;
+    padding-top: 4px;
+
+    border: none;
+
+    border-radius: 10px;
+    background-color: transparent;
+    background-image: radial-gradient(
+      76% 151% at 52% 5%,
+      rgba(255, 255, 255, 0.23) 0%,
+      transparent 100%
+    );
+
+    box-shadow: rgba(255, 255, 255, 0.2) 0px 1px 0px 0px inset,
+      rgba(0, 0, 0, 0.9) 0px 0px 0px 1px;
+
+    /* position: fixed;
+    left: 15px;
+    top: 15px; */
+
+    z-index: 30;
+  }
+
+  .MenuBar {
+    display: none;
+    height: 100vh;
+    width: 22vw;
+    background-color: black;
+    position: fixed;
+    z-index: 20;
+    animation: MoveLeft linear 0.15s;
+    border-right: 1px solid rgba(255, 0, 0, 0.748);
+  }
+
+  .HideMenuBar {
+    width: 22vw;
+    display: block;
+    z-index: 20;
+    animation: MoveRight linear 0.15s;
+  }
+
+  @keyframes MoveRight {
+    0% {
+      width: 0;
+    }
+
+    100% {
+      width: 22vw;
+    }
+  }
+
+  @keyframes MoveLeft {
+    0% {
+      width: 22vw;
+    }
+
+    100% {
+      width: 0;
+    }
+  }
+
+  .ViewAllDetails {
+    background-color: rgb(0, 0, 0);
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: x-large;
+    text-align: end;
+    padding: 20px;
+    border-bottom: 1px solid rgba(255, 0, 0, 0.801);
+  }
+
+  .DetalisListsHeading {
+    padding-left: 5%;
+  }
+
+  .DetalisLists {
+    padding-left: 0px;
+    padding-right: 0px;
+    height: 65px;
+    text-align: center;
+    background-color: black;
+    color: rgba(255, 255, 255, 0.651);
+    box-shadow: none;
+    border-radius: 0px;
+    font-weight: lighter;
+    margin: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    font-size: large;
+    padding: 20px;
+    border: 1px solid rgba(255, 0, 0, 0.089);
+    /* animation: MoveRight linear 0.15s; */
+  }
+
+  .MoveLefts {
+    animation: MoveLeft linear 0.15s;
+  }
+
+  .MoveRights {
+    animation: MoveRight linear 0.15s;
+  }
+
+  .DetalisLists:hover {
+    background-color: rgb(31, 35, 37);
+    cursor: pointer;
+  }
+
+  .ChangeMenuButton {
+    background-image: none;
+
+    box-shadow: none;
+  }
+}

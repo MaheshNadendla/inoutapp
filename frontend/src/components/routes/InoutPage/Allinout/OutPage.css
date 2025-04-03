@@ -1,0 +1,129 @@
+
+.OutPage {
+
+    height: 340px;
+    width: 450px;
+    /* border-radius: 20px; */
+
+    border-top-right-radius: 40%;
+    border-bottom-left-radius: 40%;
+
+    background-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.1) ;
+    backdrop-filter: blur(10px);
+
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-right: 2px solid rgba(255, 255, 255, 0.2);
+    border-left: 2px solid rgba(255, 255, 255, 0.2);
+
+    /* position: absolute;
+    top : 55%;
+    left:50%;
+    transform: translate(-50%,-50%); */
+
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+
+
+    
+    .OutBackBtn{
+
+        position: absolute;
+        top : 10px;
+        left : 10px;
+    
+
+
+        height: 40px;
+        width: 40px;
+        background-color: blue;
+        font-size: x-large;
+        border-radius: 50%;
+        border: none;
+
+        
+
+        .line1{
+
+            height: 3px;
+            width: 50%;
+            background-color: black;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%) rotateZ(-45deg);
+
+        }
+
+        .line2{
+
+            height: 3px;
+            width: 50%;
+            background-color: black;
+            position: absolute;
+            top:50%;
+            left: 50%;
+            transform: translate(-50%,-50%) rotateZ(45deg);
+
+        }
+
+
+
+        
+
+    }
+
+    .SubmitBtn{
+
+        position: absolute;
+        bottom : 10px;
+        right : 10px;
+
+        height: 40px;
+        width: 90px;
+        border-radius: 20px;
+        border: none;
+
+        background-color: blue;
+        color: white;
+
+        font-size: medium;
+
+    }
+
+    .OutInputBox{
+
+        height: 30px;
+        width: 250px;
+        font-size: larger;
+        text-align: center;
+        outline: none;
+        border: none;
+        background-color: transparent;
+        border-bottom: 2px solid black;
+        color: white;
+        /* padding-top: 20px; */
+        margin-bottom: 15px;
+
+    }
+
+    .OutLabel1{
+
+        font-size: larger;
+        padding-bottom: 5px;
+
+    }
+
+    .OutLabel2{
+
+        font-size: larger;
+        padding-bottom: 5px;
+
+    }
+
+}

@@ -1,0 +1,116 @@
+.ButtonsBox {
+
+    height: 500px;
+    width: 400px;
+    /* background-color: blue; */
+
+  
+
+
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+
+
+
+
+
+    .buttonsbtn{
+
+        height: 50px;
+        width : 120px;
+
+        position: relative;
+        transition: all 0.3s ease-in-out;
+        padding-block: 0.5rem;
+        padding-inline: 1.25rem;
+        background: linear-gradient(to bottom, #171717, #242424);
+        /* background: (#041e30, #043b55); */
+
+        /* background-color: blue; */
+
+        /* background: #0D1127; */
+
+        /* background: #016DD9; */
+
+        /* background: linear-gradient(135deg, #016DD9, #005bb5, #003f8a); */
+
+
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 1), 0 10px 20px rgba(0, 0, 0, 0.4);
+
+        background: transparent;
+
+        backdrop-filter: blur(10px);
+
+
+
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffff;
+        gap: 10px;
+        font-weight: bold;
+        border-top: 2px solid rgba(255, 255, 255, 0.156);
+        border-left: 2px solid rgba(255, 255, 255, 0.156);
+        border-bottom: 2px solid rgba(0, 0, 0, 0.156);
+        border-right: 2px solid rgba(0, 0, 0, 0.156);
+        outline: none;
+        overflow: hidden;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      
+      .buttonsbtn:hover {
+        transform: scale(1.05);
+        /* border-color: #fff9; */
+        box-shadow: 0 2px 4px rgb(255, 255, 255), 0 10px 25px rgba(255, 255, 255, 0.4);
+      }
+      
+      .buttonsbtn:hover .icon {
+        transform: translate(4px);
+      }
+      
+      .buttonsbtn:hover::before {
+        animation: shine 1.5s ease-out infinite;
+      }
+      
+      .buttonsbtn::before {
+        content: "";
+        position: absolute;
+        width: 100px;
+        height: 100%;
+        background-image: linear-gradient(
+          120deg,
+          rgba(255, 255, 255, 0) 30%,
+          rgba(255, 255, 255, 0.8),
+          rgba(255, 255, 255, 0) 70%
+        );
+        top: 0;
+        left: -100px;
+        opacity: 0.6;
+      }
+      
+
+        
+
+    
+
+}
+
+
+@keyframes shine {
+0% {
+    left: -100px;
+}
+
+60% {
+    left: 100%;
+}
+
+to {
+    left: 100%;
+}
+}

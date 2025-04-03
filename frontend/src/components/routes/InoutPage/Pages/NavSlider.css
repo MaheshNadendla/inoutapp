@@ -1,0 +1,36 @@
+
+.Navs{
+  
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100dvh;
+    background-color: aqua;
+    overflow: hidden;
+    transition: width 0.4s ease-in-out; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+
+.NavSliderClose{
+    width: 0dvw;
+}
+
+.NavSliderOpen{
+    width: 20dvw;
+}
+
+.NavOptions{
+    width: 100%;
+    background-color: blue;
+    border: 1px solid;
+    height: 6dvh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
